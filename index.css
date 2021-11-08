@@ -1,0 +1,226 @@
+@import url("fonts/nexa_lightfree_macroman/stylesheet.css");
+@import url("fonts/nexa_boldfree_macroman/stylesheet.css");
+
+/* Adaptivity */
+ @media (max-width: 960px) { /* Phones */
+    .nav {
+        display: none;
+    }
+    .nav-mobile {
+        display: block;
+        font-family: "Nexa Bold";
+        position: absolute;
+        justify-content: right;
+        align-items: center;
+        height: 48px;
+        width: 100vw;
+        /* background-color: #00000080; */
+        z-index: 10;
+        transition: height 0.5s ease-in-out;
+        overflow: hidden;
+    }
+}
+
+@media (min-width: 960px) { /* Widescreen */
+    .nav-mobile {
+        display: none;
+    }
+    .nav {
+        display: flex; 
+        font-family: "Nexa Bold";
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        line-height: 32px; 
+        width: 100vw;
+        z-index: 10;
+    }
+}
+
+/* Document */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(0, 25, 49);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+h1 {
+    font-family: "Nexa Bold";
+    color: white;
+}
+
+a {
+	text-decoration: none;
+	text-decoration-color: white;
+}
+
+/* ParticlesJS */
+#particles, #particles > canvas {
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+
+    position: absolute;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50% 50%;
+}
+
+/* Desktop navigation */
+.nav {
+    font-family: "Nexa Bold";
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    line-height: 32px; 
+    width: 100vw;
+    z-index: 10;
+}
+
+.navlink {
+    font-size: 1em;
+    margin: 0 3rem;
+    color: white;
+    position: relative;
+    text-decoration: none;
+}
+
+.navlink:hover {
+    color: white;
+}
+
+.navlink::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 4px;
+    left: 0;
+    background-color: white;
+    visibility: hidden;
+    /* -webkit-transform: scaleX(0); */
+    transform: scaleX(0);
+    /* -webkit-transition: all 0.5s ease-in-out 0s; */
+    transition: 0.3s ease-in-out;
+}
+  
+.navlink:hover::before {
+    visibility: visible;
+    /* -webkit-transform: scaleX(1); */
+    transform: scaleX(1);
+}
+
+.navlink.placeholder {
+    display: block;
+    margin: 0;
+    
+    transition: 1s ease-in-out width;
+}
+
+.navlink.placeholder[pos="center"] {
+    width: 0;
+}
+
+.navlink.placeholder[pos="top"] {
+    width: 256px;
+}
+
+/* Mobile navigation */
+.bars {
+    width: 48px;
+    height: 48px;
+    margin-left: auto;
+}
+
+.bars > span {
+    position: absolute;
+    height: 2px;
+    width: 32px;
+    margin-left: 8px;
+    background-color: white;
+    transition: transform 0.5s ease-in-out;
+}
+
+.bars > .top {
+    margin-top: 16px;
+}
+
+.bars > .middle-front, .bars > .middle-back {
+    margin-top: 24px;
+}
+
+.bars > .bottom {
+    margin-top: 32px;
+}
+
+.nav-mobile-links > .navlink::before {
+    bottom: 0;
+}
+
+.nav-mobile[active="true"] > .bars > .top {
+    transform: scaleX(0);
+}
+
+.nav-mobile[active="true"] > .bars > .middle-front {  
+    transform: rotate(45deg);
+}
+
+.nav-mobile[active="true"] > .bars > .middle-back {
+    transform: rotate(-45deg);
+}
+
+.nav-mobile[active="true"] > .bars > .bottom {
+    transform: scaleX(0);
+}
+
+.nav-mobile[active="true"] {
+    height: 320px;
+}
+
+.nav-mobile-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 64px;
+}
+.nav-mobile-links > .navlink {
+    margin: 1rem 0;
+}
+
+/* Center Logo */
+.container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container.logo {
+    transition: height 1s ease-in-out;
+}
+
+.container.logo[pos="top"] {
+    height: 112px;
+}
+
+img.logo {
+    z-index: 10;
+	min-height: 100px;
+	max-height: 500px;
+	min-width: 225px;
+	width: 75%;
+	opacity: 1;
+	transition: max-width 1s ease-in-out;
+}
+
+img.logo[pos="center"] {
+    max-width: 1125px;
+}
+
+img.logo[pos="top"] {
+    max-width: 225px;
+}

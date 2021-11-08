@@ -113,13 +113,16 @@ const pjsConfig = {
 var topStates = ["about", "work", "media", "contact"]
 var state = "home"
 
-let logoContainer, logo, navPlaceholder, navMobile, aboutText
+let logoContainer, logo, navPlaceholder, navMobile, menuButton, backButton, 
+    aboutText
 
 window.addEventListener("load", () => {
     logoContainer = $(".container.logo")
     logo = $("img.logo")
     navPlaceholder = $(".navlink.placeholder")
     navMobile = $(".nav-mobile")
+    menuButton = $(".bars")
+    backButton = $(".arrow")
     aboutText = $(".acticle.about")
 
     /// Add particles to scene
@@ -130,12 +133,14 @@ window.addEventListener("load", () => {
     $(".navlink.work").addEventListener("click", workDesktopNavlinkClick)
     $(".navlink.media").addEventListener("click", mediaDesktopNavlinkClick)
     $(".navlink.contact").addEventListener("click", contactDesktopNavlinkClick)
-    navMobile.addEventListener("click", hamburgerMenuClick)
     
-    $(".navlink-mobile.about").addEventListener("click", aboutDesktopNavlinkClick)
-    $(".navlink-mobile.work").addEventListener("click", workDesktopNavlinkClick)
-    $(".navlink-mobile.media").addEventListener("click", mediaDesktopNavlinkClick)
-    $(".navlink-mobile.contact").addEventListener("click", contactDesktopNavlinkClick)
+    menuButton.addEventListener("click", hamburgerMenuClick)
+    backButton.addEventListener("click", backButtonClick);
+    
+    $(".navlink-mobile.about").addEventListener("click", () => { aboutDesktopNavlinkClick(); hamburgerMenuClick(); })
+    $(".navlink-mobile.work").addEventListener("click", () => { workDesktopNavlinkClick(); hamburgerMenuClick(); })
+    $(".navlink-mobile.media").addEventListener("click", () => { mediaDesktopNavlinkClick(); hamburgerMenuClick(); })
+    $(".navlink-mobile.contact").addEventListener("click", () => { contactDesktopNavlinkClick(); hamburgerMenuClick(); })
 
     //UpdateState("home");
 })
@@ -148,10 +153,12 @@ function UpdateState(_state) {
         logo.attributes.pos.value = "center"
         logoContainer.attributes.pos.value = "center"
         navPlaceholder.attributes.pos.value = "center"
+        backButton.attributes.visible.value = "false"
     } else {
         logoContainer.attributes.pos.value = "top"
         logo.attributes.pos.value = "top"
         navPlaceholder.attributes.pos.value = "top"
+        backButton.attributes.visible.value = "true"
     }
 
     switch (state) {
@@ -181,6 +188,10 @@ function hamburgerMenuClick() {
         navMobile.attributes.active.value = "true"
     else
         navMobile.attributes.active.value = "false"
+}
+
+function backButtonClick() {
+    UpdateState("home")
 }
 
 function aboutDesktopNavlinkClick() {

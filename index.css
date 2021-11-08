@@ -2,7 +2,7 @@
 @import url("fonts/nexa_boldfree_macroman/stylesheet.css");
 
 /* Adaptivity */
- @media (max-width: 960px) { /* Phones */
+@media (max-width: 960px) { /* Phones */
     .nav {
         display: none;
     }
@@ -128,10 +128,36 @@ a {
 }
 
 /* Mobile navigation */
+.arrow {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 20;
+}
+
+.arrow[visible="true"] {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.arrow-container {
+    height: 32px;
+    width: 32px;
+    background-image: url("img/arrow_back_white_24dp.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .bars {
     width: 48px;
     height: 48px;
     margin-left: auto;
+    cursor: pointer;
 }
 
 .bars > span {
@@ -185,6 +211,7 @@ a {
     align-items: center;
     margin-top: 64px;
 }
+
 .nav-mobile-links > .navlink {
     margin: 1rem 0;
 }

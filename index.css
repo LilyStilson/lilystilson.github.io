@@ -12,10 +12,11 @@
         position: absolute;
         justify-content: right;
         align-items: center;
-        height: 48px;
+        height: 96px;
         width: 100vw;
         /* background-color: #00000080; */
-        z-index: 10;
+        pointer-events: none;
+        z-index: 1;
         transition: height 0.5s ease-in-out;
         overflow: hidden;
     }
@@ -85,6 +86,8 @@ a {
     color: white;
     position: relative;
     text-decoration: none;
+    z-index: 10;
+    pointer-events: auto;
 }
 
 .navlink:hover {
@@ -129,7 +132,6 @@ a {
 
 /* Mobile navigation */
 .arrow {
-    position: absolute;
     width: 48px;
     height: 48px;
     display: flex;
@@ -137,11 +139,11 @@ a {
     align-items: center;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
-    z-index: 20;
 }
 
 .arrow[visible="true"] {
     cursor: pointer;
+    pointer-events: auto;
     opacity: 1;
 }
 
@@ -156,48 +158,56 @@ a {
 .bars {
     width: 48px;
     height: 48px;
-    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+    pointer-events: auto;
 }
 
-.bars > span {
+.bars-container {
+    height: 32px;
+    width: 32px;
+}
+
+.bars-container > span {
     position: absolute;
     height: 2px;
-    width: 32px;
-    margin-left: 8px;
+    width: 20px;
+    margin-left: 6px;
     background-color: white;
     transition: transform 0.5s ease-in-out;
 }
 
-.bars > .top {
+.bars-container > .top {
+    margin-top: 8px;
+}
+
+.bars-container > .middle-front, .bars-container > .middle-back {
     margin-top: 16px;
 }
 
-.bars > .middle-front, .bars > .middle-back {
+.bars-container > .bottom {
     margin-top: 24px;
-}
-
-.bars > .bottom {
-    margin-top: 32px;
 }
 
 .nav-mobile-links > .navlink::before {
     bottom: 0;
 }
 
-.nav-mobile[active="true"] > .bars > .top {
+.nav-mobile[active="true"] > .bars > .bars-container > .top {
     transform: scaleX(0);
 }
 
-.nav-mobile[active="true"] > .bars > .middle-front {  
+.nav-mobile[active="true"] > .bars > .bars-container > .middle-front {  
     transform: rotate(45deg);
 }
 
-.nav-mobile[active="true"] > .bars > .middle-back {
+.nav-mobile[active="true"] > .bars > .bars-container > .middle-back {
     transform: rotate(-45deg);
 }
 
-.nav-mobile[active="true"] > .bars > .bottom {
+.nav-mobile[active="true"] > .bars > .bars-container > .bottom {
     transform: scaleX(0);
 }
 
@@ -209,7 +219,6 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 64px;
 }
 
 .nav-mobile-links > .navlink {

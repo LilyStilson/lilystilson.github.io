@@ -110,20 +110,23 @@ const pjsConfig = {
     "retina_detect": true
 }
 
-var topStates = ["about", "work", "media", "contact"]
 var state = "home"
 
-let logoContainer, logo, navPlaceholder, navMobile, menuButton, backButton, 
-    aboutText
+let logoContainer, logo, navPlaceholder, navMobile, menuButton, backButton, articles,
+    aboutArticle, workArticle, mediaArticle, contactArticle
 
 window.addEventListener("load", () => {
-    logoContainer = $(".container.logo")
-    logo = $("img.logo")
-    navPlaceholder = $(".navlink.placeholder")
-    navMobile = $(".nav-mobile")
-    menuButton = $(".bars")
-    backButton = $(".arrow")
-    aboutText = $(".acticle.about")
+    logoContainer   = $(".container.logo")
+    logo            = $("img.logo")
+    navPlaceholder  = $(".navlink.placeholder")
+    navMobile       = $(".nav-mobile")
+    menuButton      = $(".bars")
+    backButton      = $(".arrow")
+    articles        = $(".articles")
+    aboutArticle    = $(".article.about")    
+    workArticle     = $(".article.work")
+    mediaArticle    = $(".article.media")
+    contactArticle  = $(".article.contact")   
 
     /// Add particles to scene
     particlesJS("particles", pjsConfig)
@@ -147,40 +150,112 @@ window.addEventListener("load", () => {
 
 function UpdateState(_state) {
     console.log(_state)
-    state = _state
+    
 
-    if (state === "home") {
+    if (_state === "home") {
         logo.attributes.pos.value = "center"
         logoContainer.attributes.pos.value = "center"
         navPlaceholder.attributes.pos.value = "center"
         backButton.attributes.visible.value = "false"
+        articles.attributes.visible.value = "false"
     } else {
         logoContainer.attributes.pos.value = "top"
         logo.attributes.pos.value = "top"
         navPlaceholder.attributes.pos.value = "top"
         backButton.attributes.visible.value = "true"
+        articles.attributes.visible.value = "true"
     }
 
-    switch (state) {
+    switch (_state) {
         case "home": {          
             break
         }
-        case "about": {
+        case "about": { 
+            if(state === "home") {
+                aboutArticle.attributes["needs-transition"].value = "false"
+                workArticle.attributes["needs-transition"].value = "false"
+                mediaArticle.attributes["needs-transition"].value = "false"
+                contactArticle.attributes["needs-transition"].value = "false"
+            } else {
+                aboutArticle.attributes["needs-transition"].value = "true"
+                workArticle.attributes["needs-transition"].value = (workArticle.attributes.position.value === "right" || workArticle.attributes.position.value === "left") ? "false" : "true"
+                mediaArticle.attributes["needs-transition"].value = (mediaArticle.attributes.position.value === "right" || mediaArticle.attributes.position.value === "left") ? "false" : "true"
+                contactArticle.attributes["needs-transition"].value = (contactArticle.attributes.position.value === "right" || contactArticle.attributes.position.value === "left") ? "false" : "true"
+            }
+ 
+            aboutArticle.attributes.position.value = "center"
+            workArticle.attributes.position.value = "right"
+            mediaArticle.attributes.position.value = "right"
+            contactArticle.attributes.position.value = "right"
             break
         }
         case "work": {
+            if(state === "home") {
+                aboutArticle.attributes["needs-transition"].value = "false"
+                workArticle.attributes["needs-transition"].value = "false"
+                mediaArticle.attributes["needs-transition"].value = "false"
+                contactArticle.attributes["needs-transition"].value = "false"
+            } else {
+                aboutArticle.attributes["needs-transition"].value = (aboutArticle.attributes.position.value === "right" || aboutArticle.attributes.position.value === "left") ? "false" : "true"
+                workArticle.attributes["needs-transition"].value = "true"
+                mediaArticle.attributes["needs-transition"].value = (mediaArticle.attributes.position.value === "right" || mediaArticle.attributes.position.value === "left") ? "false" : "true"
+                contactArticle.attributes["needs-transition"].value = (contactArticle.attributes.position.value === "right" || contactArticle.attributes.position.value === "left") ? "false" : "true"
+            }
+
+            aboutArticle.attributes.position.value = "left"
+            workArticle.attributes.position.value = "center"
+            mediaArticle.attributes.position.value = "right"
+            contactArticle.attributes.position.value = "right"
             break
         }
         case "media": {
+            if(state === "home") {
+                aboutArticle.attributes["needs-transition"].value = "false"
+                workArticle.attributes["needs-transition"].value = "false"
+                mediaArticle.attributes["needs-transition"].value = "false"
+                contactArticle.attributes["needs-transition"].value = "false"
+            } else {
+                aboutArticle.attributes["needs-transition"].value = (aboutArticle.attributes.position.value === "right" || aboutArticle.attributes.position.value === "left") ? "false" : "true"
+                workArticle.attributes["needs-transition"].value = (workArticle.attributes.position.value === "right" || workArticle.attributes.position.value === "left") ? "false" : "true"
+                mediaArticle.attributes["needs-transition"].value = "true"
+                contactArticle.attributes["needs-transition"].value = (contactArticle.attributes.position.value === "right" || contactArticle.attributes.position.value === "left") ? "false" : "true"
+            }
+            
+            aboutArticle.attributes.position.value = "left"
+            workArticle.attributes.position.value = "left"
+            mediaArticle.attributes.position.value = "center"
+            contactArticle.attributes.position.value = "right"
             break
         }
         case "contact": {
+            if(state === "home") {
+                aboutArticle.attributes["needs-transition"].value = "false"
+                workArticle.attributes["needs-transition"].value = "false"
+                mediaArticle.attributes["needs-transition"].value = "false"
+                contactArticle.attributes["needs-transition"].value = "false"
+            } else {
+                aboutArticle.attributes["needs-transition"].value = (aboutArticle.attributes.position.value === "right" || aboutArticle.attributes.position.value === "left") ? "false" : "true"
+                workArticle.attributes["needs-transition"].value = (workArticle.attributes.position.value === "right" || workArticle.attributes.position.value === "left") ? "false" : "true"
+                mediaArticle.attributes["needs-transition"].value = (contactArticle.attributes.position.value === "right" || contactArticle.attributes.position.value === "left") ? "false" : "true"
+                contactArticle.attributes["needs-transition"].value = "true"
+            }
+            
+            aboutArticle.attributes.position.value = "left"
+            workArticle.attributes.position.value = "left"
+            mediaArticle.attributes.position.value = "left"
+            contactArticle.attributes.position.value = "center"
             break
         }
         default: {
             break
         }
     }
+
+    state = _state
+}
+
+function ChangePage(page) {
+
 }
 
 function hamburgerMenuClick() {

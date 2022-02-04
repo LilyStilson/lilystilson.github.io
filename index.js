@@ -236,7 +236,7 @@ function UpdateState(_state) {
             } else {
                 aboutArticle.attributes["needs-transition"].value = (aboutArticle.attributes.position.value === "right" || aboutArticle.attributes.position.value === "left") ? "false" : "true"
                 workArticle.attributes["needs-transition"].value = (workArticle.attributes.position.value === "right" || workArticle.attributes.position.value === "left") ? "false" : "true"
-                mediaArticle.attributes["needs-transition"].value = (contactArticle.attributes.position.value === "right" || contactArticle.attributes.position.value === "left") ? "false" : "true"
+                mediaArticle.attributes["needs-transition"].value = (mediaArticle.attributes.position.value === "right" || mediaArticle.attributes.position.value === "left") ? "false" : "true"
                 contactArticle.attributes["needs-transition"].value = "true"
             }
             

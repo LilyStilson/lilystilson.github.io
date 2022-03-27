@@ -47,8 +47,8 @@
         <div class="container articles" visible="false" section="about">
             <div class="article about" position="center" needs-transition="true">
                 <div class="article-body">
-                    <h1>Hi from Russia! I'm Lily Stilson!</h1>
-                    <p>My name is <b>Alice</b> and I am a 24 years old music producer, VFX designer and programmer. My journey with music started with making "sampled" stuff in 2012 and swithing to a full-featured DAW in 2014. I am using FL Studio since version 10 and to this day I quite like it. Still I am fully able to work in other DAWs and sometimes I do stuff in Bitwig. Aside from music I do visual effects and motion graphics with a bit of 3D modeling and animation. Programming comes here naturally, since I always develop some custom scripts for me to use in my daily routine. I am also the developer behind <a href="https://aerenderlauncher.com" target="_blank">AErender Launcher</a> - a free tool that is used to speed up Adobe After Effects' rendering (which I'm also using almost daily).</p>
+                    <h1>Hi from Russia! I"m Lily Stilson!</h1>
+                    <p>My name is <b>Alice</b> and I am a 24 years old music producer, VFX designer and programmer. My journey with music started with making "sampled" stuff in 2012 and swithing to a full-featured DAW in 2014. I am using FL Studio since version 10 and to this day I quite like it. Still I am fully able to work in other DAWs and sometimes I do stuff in Bitwig. Aside from music I do visual effects and motion graphics with a bit of 3D modeling and animation. Programming comes here naturally, since I always develop some custom scripts for me to use in my daily routine. I am also the developer behind <a href="https://aerenderlauncher.com" target="_blank">AErender Launcher</a> - a free tool that is used to speed up Adobe After Effects" rendering (which I"m also using almost daily).</p>
                 </div>
             </div> 
             <div class="article work" position="right" needs-transition="true">
@@ -70,15 +70,15 @@
             <div class="article media" position="right" needs-transition="true">
                 <div class="article-body">
                     <div class="media-container">
-                        <a href="https://vk.com/lilystilson" target="_blank">
+                        <a class="media-navlink" href="https://vk.com/lilystilson" target="_blank">
                             <img src="img/VK.svg" alt="VK" height="150px">
                             <p>VK</p>
                         </a>
-                        <a href="https://youtube.com/lilystilson"target="_blank">
+                        <a class="media-navlink" href="https://youtube.com/lilystilson"target="_blank">
                             <img src="img/YouTube.svg" alt="YouTube" height="150px">
                             <p>YouTube</p>
                         </a>
-                        <a href="https://soundcloud.com/lily_stilson" target="_blank">	
+                        <a class="media-navlink" href="https://soundcloud.com/lily_stilson" target="_blank">	
                             <img src="img/Soundcloud.svg" alt="Soundcloud" height="150px">
                             <p>Soundcloud</p>
                         </a>
@@ -88,7 +88,23 @@
             <div class="article contact" position="right" needs-transition="true">
                 <div class="article-body">
                     <h1>Contact me</h1>
-                    <p>Qui ex mollit ad ea nulla ut. Voluptate magna irure aliqua consequat aliquip id ipsum enim veniam non non eu ut aliquip. Ullamco sint duis magna ex irure officia id.</p>
+                    <form class="contact-form" >
+                        <div class="form-group field">
+                            <input type="input" class="form-field" placeholder="Name" name="name" id="name" valid="true" oninput="resetValidation(event)" required />
+                            <label for="name" class="form-label">Name</label>
+                        </div>
+                        <div class="form-group field">
+                            <input type="email" class="form-field" placeholder="Email" name="email" id="email" valid="true" oninput="resetValidation(event)" required />
+                            <label for="email" class="form-label">Email</label>
+                        </div>
+                        <div class="form-group field">
+                            <textarea class="form-field" placeholder="Message" name="message" id="message" valid="true" oninput="resetValidation(event)" required></textarea>
+                            <label for="message" class="form-label">Message</label>
+                        </div>
+                        <div class="form-group button">
+                            <button type="submit" class="media-navlink form-button" onclick="formSend(event)">Send</button>
+                        </div>
+                    </form>    
                 </div>
             </div> 
         </div>

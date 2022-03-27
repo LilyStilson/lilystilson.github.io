@@ -300,3 +300,67 @@ function contactDesktopNavlinkClick() {
         UpdateState("contact");
     }
 }
+
+function resetValidation(event) {
+    event.target.attributes.valid.value = "true";
+}
+
+function formSend(event) {
+    event.preventDefault()
+    event.target.disabled = true
+
+    var form = new FormData($(".contact-form")),
+        name = $("#name"),
+        email = $("#email"),
+        message = $("#message")
+
+
+    fetch("https://lilystilson-8890.restdb.io/rest/contact", {
+        method: "POST",
+        headers: {
+            "x-apikey": "6240533f67937c128d7c925e",
+            "Content-Type": "application/json"
+        },
+        mode:"cors",
+        body: JSON.stringify({
+            "name": form.get("name"),
+            "email": form.get("email"),
+            "message": form.get("message")
+        })
+    }).then((response) => {
+        if(response.status == 400) {
+            response.json().then(result => {
+                console.error(result.message)
+                for (var i = 0; i < result.list.length; i++) {
+                    switch(result.list[i].field) {
+                        case "name": {
+                            name.attributes.valid.value = "false"
+                            break
+                        }
+                        case "email": {
+                            email.attributes.valid.value = "false"
+                            break
+                        }
+                        case "message": {
+                            message.attributes.valid.value = "false"
+                            break
+                        }
+                    }
+                }
+                alert("Some of the fields are invalid! Please check them and try again.")
+                event.target.disabled = false
+            })
+        } else {
+            alert("Message sent!")
+            name.value = ""
+            email.value = ""
+            message.value = ""
+            event.target.title = "Please wait a minute before sending another message."
+            setTimeout(() => {
+                event.target.disabled = false
+                event.target.title = "";
+            }, 1000 * 60)
+            
+        }
+    })
+}

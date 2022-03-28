@@ -88,7 +88,7 @@
         z-index: 10;
     }
     .articles {
-        pointer-events: none;
+        /*pointer-events: none;*/
     }
     
     .article-body {
